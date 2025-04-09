@@ -15,6 +15,7 @@ const nums = [1, 5, 3, 4, 3, 5, 6];
 // approach 1: using hash map
 // iterate on the array and store the occurance of element in the hash table
 // once iteration is done on array then iterate again to find which first element has more than 1 occurance
+// Big O is TC - O(n+n) = O(n) and SC - O(n) i.e memory for hash map in worst case it will store n element
 
 const findFirstRepeatingElement = (nums) => {
   const eleHashTable = {};
