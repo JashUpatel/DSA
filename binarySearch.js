@@ -5,7 +5,7 @@ const nums = [2, 4, 6, 8, 10, 12, 16];
 const binarySearchMethod = (nums, target) => {
   let start = 0;
   let end = nums.length - 1;
-  let mid = parseInt(start + end) / 2;
+  let mid = parseInt((start + end) / 2);
 
   while (start <= end) {
     if (nums[mid] == target) {
@@ -18,7 +18,7 @@ const binarySearchMethod = (nums, target) => {
       end = mid - 1;
     }
 
-    mid = parseInt(start + end) / 2;
+    mid = parseInt((start + end) / 2);
   }
   return -1;
 };
