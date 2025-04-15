@@ -11,6 +11,7 @@ peakElementUsingBinarySearch = (nums) => {
   let mid = parseInt((start + end) / 2);
   //   let ans = -1;
 
+  //   not using start<=end as it will cause infinite loop as we have end=mid value as well
   while (start < end) {
     if (nums[mid] < nums[mid + 1]) {
       start = mid + 1;
