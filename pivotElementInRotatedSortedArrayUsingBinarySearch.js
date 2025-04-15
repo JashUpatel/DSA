@@ -33,4 +33,41 @@ const pivotElementUsingBinarySearch = (nums) => {
   return -1;
 };
 
+// binary search method with search class usecase
+const binarySearchMethod = (nums, start, end, target) => {
+  let mid = parseInt((start + end) / 2);
+
+  while (start <= end) {
+    if (nums[mid] == target) {
+      return mid;
+    }
+
+    if (nums[mid] < target) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+
+    mid = parseInt((start + end) / 2);
+  }
+  return -1;
+};
+
+// search element in rotated sorted array
+// Big O - TC O(logn)+O(logn) = O(logn)
+const searchElementInRotatedSortedArray = (nums, target) => {
+  const pivotIndex = pivotElementUsingBinarySearch(nums);
+  let ans = -1;
+
+  // search in Left side
+  if (target >= nums[0] && target <= nums[pivotIndex]) {
+    ans = binarySearchMethod(nums, 0, pivotIndex, target);
+  } else {
+    ans = binarySearchMethod(nums, pivotIndex + 1, nums.length - 1, target);
+  }
+
+  return ans;
+};
+
 console.log(pivotElementUsingBinarySearch(nums));
+console.log(searchElementInRotatedSortedArray(nums, 4));
