@@ -11,6 +11,7 @@ const convertInMins = (timePoint) => {
   return mins ? mins : 1440;
 };
 
+// Big O  TC - O(n^2)  SC - O(1)
 const findMinDifferenceByLoop = (timePoints) => {
   let timeDiff = 1440; //highest difference i.e 24hrs
 
