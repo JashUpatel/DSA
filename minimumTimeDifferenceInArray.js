@@ -1,14 +1,15 @@
 // given list of 24 hr clock time points in "HH:MM" format,
 // return the minimum minutes difference between any two point in the list
 
-// const timePoints = ["23:59", "00:00"];
-const timePoints = ["00:00", "23:59", "00:00"];
+const timePoints = ["23:59", "00:00"];
+// const timePoints = ["00:00", "23:59", "00:00"];
 
 const convertInMins = (timePoint) => {
   let mins =
     parseInt(timePoint.split(":")[0]) * 60 + parseInt(timePoint.split(":")[1]);
 
-  return mins ? mins : 1440;
+  //   return mins ? mins : 1440;
+  return mins;
 };
 
 // Big O  TC - O(n^2)  SC - O(1)
@@ -21,7 +22,17 @@ const findMinDifferenceByLoop = (timePoints) => {
         convertInMins(timePoints[j]) - convertInMins(timePoints[i])
       );
 
-      timeDiff = Math.min(diff, timeDiff);
+      //   any value can be closer to 00:00 and
+      // can impact the difference when calculated from backward
+      let diff1 = Math.abs(
+        convertInMins(timePoints[j]) + 1440 - convertInMins(timePoints[i])
+      );
+      let diff2 = Math.abs(
+        convertInMins(timePoints[j]) - convertInMins(timePoints[i] + 1440)
+      );
+
+      //   timeDiff = Math.min(diff, timeDiff);
+      timeDiff = Math.min(diff, timeDiff, diff1, diff2);
     }
   }
   return timeDiff;
