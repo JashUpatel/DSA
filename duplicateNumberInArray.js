@@ -57,6 +57,7 @@ const postionSwapMethodForRepeatinngInt = (nums) => {
     nums[0] = nums[nums[0]];
     nums[temp] = temp;
     // [nums[0], nums[nums[0]]] = [nums[nums[0]], nums[0]];
+    // [nums[0], nums[temp]] = [nums[temp], nums[0]]; //this will work
   }
   return nums[0];
 };
