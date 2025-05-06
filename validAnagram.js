@@ -51,12 +51,12 @@ console.log(checkValidAnagramBySort(s, t));
 
 // check string comparison
 
-if (-1) console.log(-1);
+if (-1) console.log(-1); //-1
 if (0) console.log(0);
 if (NaN) console.log(NaN);
 if (undefined) console.log(undefined);
 if ("") console.log("space");
-if ("   ") console.log("tab");
-if ("\t") console.log("tab");
-if ("\n") console.log("newline");
-if (`\n`) console.log("newline");
+if ("   ") console.log("tab"); //tab
+if ("\t") console.log("tab"); //tab
+if ("\n") console.log("newline"); //newline
+if (`\n`) console.log("newline"); //newline
