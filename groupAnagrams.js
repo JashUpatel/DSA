@@ -39,5 +39,7 @@ const groupAnagramsUsingSorting = (strs) => {
 // this hash would be same for anagrams and use this as a key and group the strings
 // in JS character does not correspond to ASCII value like in CPP
 // hence need different way to hash the string
+// expected TC - O(nk)
+// can't find such hashing logic in js returing same hash for anagrams without sorting
 
 console.log(groupAnagramsUsingSorting(strs));
