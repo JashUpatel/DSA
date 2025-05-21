@@ -23,6 +23,8 @@ const binarySearchMethod = (nums, target) => {
   return -1;
 };
 
+// Big O TC O(log n) SC O(k log n) where k is memory required in stack for single call
+// TC remains same but SC increase as function calls take memory in stack with each call
 const binarySearchRecursiveFunc = (nums, start, end, target) => {
   // base condition for breaking/termination
   if (start > end) {
