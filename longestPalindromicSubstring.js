@@ -36,7 +36,65 @@ const longestPalindromicSubstring = (str) => {
   return ans;
 };
 
+// using iteration we can print only consecutive subsequences in the string
+// if we were to allow blank start inner loop from 0
+// as slice returns '' if start >= end else from i
+// and substring return '' if start=end else swap the position of start and end
+const subsequenceInString = (str) => {
+  // const subSeq = new Set();
+  const subSeq = [];
+
+  for (let i = 0; i < str.length; i++) {
+    for (let j = 0; j < str.length; j++) {
+      // subSeq.add(str.substring(i, j + 1));
+      subSeq.push(str.substring(i, j + 1));
+      // subSeq.add(str.slice(i, j + 1));
+    }
+  }
+  return subSeq;
+};
+
+const subseqRecursiveFunc = (str, subStr, output, pos) => {
+  // base condition
+  if (pos >= str.length) {
+    output.push(subStr);
+    // console.log(pos);
+    // console.log(output);
+    // return output;  // it's pretty much useless and it doesnot return to main func
+    return;
+  }
+
+  // exclude the character
+  subseqRecursiveFunc(str, subStr, output, pos + 1);
+
+  // include the character
+  subStr += str[pos];
+  subseqRecursiveFunc(str, subStr, output, pos + 1);
+};
+
+// prints all the subsets/substrings of given string
+// approach is used commonly for the include/exclude type of problems
+const subsequenceInStringUsingRecursion = (str) => {
+  // const subSeq = new Set();
+  let pos = 0;
+  let subStr = "";
+  const output = [];
+
+  // here the recursive function does not return to main function
+  // even if you return in if case as recursive call isn't returning anything
+  // since array are pass by reference the operation in recursive function reflect in main function
+  const subSeq = subseqRecursiveFunc(str, subStr, output, pos);
+  // console.log(output);
+
+  // return subSeq;  // prints undefined as function does not return anything to main function
+  return output;
+};
+
 console.log(longestPalindromicSubstring(s));
+console.log(subsequenceInString("abc"));
+console.log(subsequenceInStringUsingRecursion("abc"));
+console.log(subsequenceInString(s));
+console.log(subsequenceInStringUsingRecursion(s));
 
 // string methods
 // substring returns portion of string just as slice but it does not handle negative args
