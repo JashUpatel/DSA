@@ -41,5 +41,78 @@ const removeOccurence = (str, subStr) => {
   return str;
 };
 
+const removeOccurenceRecursiveFunc = (ans, part) => {
+  // console.log(ans);
+  // console.log(ans.join(""));
+  let pos = ans.join("").search(part);
+  // base case
+  if (pos != -1) {
+    // remove the sub string
+    // using slice will make new copy of ans and operate on it
+    // so does the split
+    // hence the ans in main function will remain same
+    // to handle that use splice which operate directly on the array
+
+    // let leftStr = ans.join("").slice(0, pos);
+    // let rightStr = ans.join("").slice(pos + part.length, ans.length);
+    ans.splice(pos, part.length);
+
+    // ans = leftStr + rightStr;
+    // console.log(ans.slice(0, pos));
+    // return removeOccurenceRecursiveFunc(ans.split(""), part);
+    removeOccurenceRecursiveFunc(ans, part);
+  } else {
+    return;
+    // return ans;
+    // something needs to be returned else will print undefined
+  }
+};
+
+const removeOccurenceUsingRecursion = (s, part) => {
+  let ans = s.split("");
+
+  // ans = removeOccurenceRecursiveFunc(ans, part);
+  removeOccurenceRecursiveFunc(ans, part);
+
+  return ans.join("");
+};
+
+console.log(removeOccurenceUsingRecursion(s, part));
 console.log(removeOccurenceOfSubstring(s, part));
 console.log(removeOccurence(s, part));
+
+// pass by reference
+
+// slice returns new string/array
+// splice operates on the same array but returns removed values in array
+
+const dummy = ["0", "1", "2", "3"];
+const dummyStr = "abcd".split("");
+const dummyStr2 = dummyStr;
+const dummyStr3 = "789";
+
+const passByReference = (dummy, dummyStr, dummyStr3) => {
+  let myDummy = dummy;
+  let myDummyStr = dummyStr;
+  // dummy[0] = "11";
+  myDummy[0] = "12";
+
+  dummyStr = dummyStr.splice(2);
+  // dummyStr.splice(2);
+  console.log(dummyStr);
+  dummyStr[0] = "z";
+  dummyStr2[2] = "y";
+  console.log(dummyStr);
+
+  // dummyStr3 = dummyStr3 + "456";
+  dummyStr3 + "456";
+  console.log(dummyStr3);
+  // return myDummy;
+  return myDummyStr;
+};
+
+// console.log(passByReference(dummy, dummyStr2, dummyStr3));
+// console.log(dummy);
+// console.log(dummyStr);
+// console.log(dummyStr2);
+// console.log(dummyStr3);
