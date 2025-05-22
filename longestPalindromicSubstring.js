@@ -106,6 +106,7 @@ const arraySubsequenceRecursiveFunc = (arr, start, end, output) => {
 };
 
 // assume the case of array instead of string to print subsequence;
+// can be done with iteration as well
 const arraySubsequenceUsingRecursion = (arr) => {
   let output = [];
 
