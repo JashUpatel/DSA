@@ -32,4 +32,40 @@ const reverseOnlyVowels = (str) => {
   return ans.join("");
 };
 
+const reverseVowelsRecursiveFunc = (strArr, start, end) => {
+  // base condition
+  if (start >= end) return;
+
+  // solution check
+  if (!/[a,e,i,o,u]/.test(strArr[start].toLowerCase()))
+    reverseVowelsRecursiveFunc(strArr, start + 1, end);
+  else if (!/[a,e,i,o,u]/.test(strArr[end].toLowerCase()))
+    reverseVowelsRecursiveFunc(strArr, start, end - 1);
+  else {
+    //   let temp = strArr[start];
+    //   strArr[start] = strArr[end];
+    //   strArr[end] = temp;
+
+    [strArr[start], strArr[end]] = [strArr[end], strArr[start]];
+    start++;
+    end--;
+    reverseVowelsRecursiveFunc(strArr, start, end);
+  }
+};
+
+// reverse the vowels in the string using recursion
+// Big O  TC - O(n/2 + 1) = O(n) SC - O(n/2 + 1) = O(n)
+// 1 call for base condition check
+const reverseOnlyVowelsUsingRecursion = (str) => {
+  let start = 0;
+  let end = str.length - 1;
+  let strArr = str.split("");
+  // to make inplace operation and return the string without declaring new string
+
+  reverseVowelsRecursiveFunc(strArr, start, end);
+
+  return strArr.join("");
+};
+
 console.log(reverseOnlyVowels(s));
+console.log(reverseOnlyVowelsUsingRecursion(s));
