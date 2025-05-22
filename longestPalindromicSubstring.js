@@ -90,11 +90,87 @@ const subsequenceInStringUsingRecursion = (str) => {
   return output;
 };
 
+// recursive function for array subsequence
+const arraySubsequenceRecursiveFunc = (arr, start, end, output) => {
+  // base condition
+  if (end == arr.length) return;
+
+  let temp = [];
+  for (let i = start; i <= end; i++) {
+    temp.push(arr[i]);
+    // if want to print then console log here
+  }
+  output.push(temp);
+
+  arraySubsequenceRecursiveFunc(arr, start, end + 1, output);
+};
+
+// assume the case of array instead of string to print subsequence;
+const arraySubsequenceUsingRecursion = (arr) => {
+  let output = [];
+
+  for (let start = 0; start < arr.length; start++) {
+    let end = start;
+    arraySubsequenceRecursiveFunc(arr, start, end, output);
+  }
+
+  return output;
+};
+
+// print subset recursive function
+const subsetInArrayRecursiveFunc = (arr, subSet, output, pos) => {
+  // console.log(subSet);
+
+  // base condition
+  if (pos == arr.length) {
+    // console.log(subSet);
+    output.push(subSet);
+    // console.log(pos);
+    // console.log(output);
+    // return output;  // it's pretty much useless and it doesnot return to main func
+    return;
+  }
+
+  // exclude the character
+  subsetInArrayRecursiveFunc(arr, subSet, output, pos + 1);
+  // console.log(subSet);
+
+  // include the character
+  // console.log("pos" + pos);
+
+  subsetInArrayRecursiveFunc(arr, [...subSet, arr[pos]], output, pos + 1);
+};
+
+// prints all the subsets of given array
+// approach is used commonly for the include/exclude type of problems
+const subsetsInArrayUsingRecursion = (arr) => {
+  // const subSeq = new Set();
+  let pos = 0;
+  let subSet = [];
+  const output = [];
+
+  // here the recursive function does not return to main function
+  // even if you return in if case as recursive call isn't returning anything
+  // since array are pass by reference the operation in recursive function reflect in main function
+  const subSeq = subsetInArrayRecursiveFunc(arr, subSet, output, pos);
+  // console.log(output);
+
+  // return subSeq;  // prints undefined as function does not return anything to main function
+  return output;
+};
+
 console.log(longestPalindromicSubstring(s));
 console.log(subsequenceInString("abc"));
 console.log(subsequenceInStringUsingRecursion("abc"));
 console.log(subsequenceInString(s));
 console.log(subsequenceInStringUsingRecursion(s));
+
+// for arrays
+const arr = [1, 2, 3];
+// for consecutive sequences
+console.log(arraySubsequenceUsingRecursion(arr));
+// for subsets include/exclude elements combinations
+console.log(subsetsInArrayUsingRecursion(arr));
 
 // string methods
 // substring returns portion of string just as slice but it does not handle negative args
