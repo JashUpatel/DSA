@@ -102,6 +102,7 @@ const solveMaze = (maze, row, col, i, j, visited, path, output) => {
   return path;
 };
 
+// Big O - TC 4^n as for each step 4 possible solution i.e function call are made
 const mazeProblem = (maze, row, col) => {
   const visited = [];
   for (let i = 0; i < row; i++) {
