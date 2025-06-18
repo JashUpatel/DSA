@@ -67,4 +67,36 @@ const partition = (arr, s, e) => {
   return pivotIndex;
 };
 
+// another approach to implement quick sort with better partition method
+const quickSortWithBetterPartition = (arr, start, end) => {
+  // base case
+  if (start >= end) return;
+
+  let pivot = end;
+  let i = start - 1;
+  let j = start;
+
+  while (j < pivot) {
+    if (arr[j] < arr[pivot]) {
+      ++i;
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    j++;
+  }
+
+  ++i;
+  [arr[i], arr[pivot]] = [arr[pivot], arr[i]];
+
+  quickSortWithBetterPartition(arr, start, i - 1);
+  quickSortWithBetterPartition(arr, i + 1, end);
+};
+
+const quickSortArr2 = (arr) => {
+  let start = 0;
+  let end = arr.length - 1;
+  quickSortWithBetterPartition(arr, start, end);
+  return arr;
+};
+
 console.log(quickSortArr(arr));
+console.log(quickSortArr2(arr));
